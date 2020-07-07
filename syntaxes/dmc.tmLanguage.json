@@ -1,0 +1,161 @@
+{
+    "fileTypes": [
+        "dmc"
+    ],
+    "name": "dmc",
+    "patterns": [
+        { "include": "#string" },
+        { "include": "#comment" },
+        { "include": "#numeric-literal" },
+        { "include": "#reserved-literal" },
+        { "include": "#assignment-operator" },
+        { "include": "#comparison-operator" },
+        { "include": "#condition-operator" },
+        { "include": "#manipulative-operator" },
+        { "include": "#function-operator" },
+        { "include": "#control-statement" },
+        { "include": "#reserved-labels" },
+        { "include": "#label-declaration" },
+        { "include": "#label-close" },
+        { "include": "#functions" },
+        { "include": "#variable-reference" },
+        { "include": "#stack-variable-reference" },
+        { "include": "#axis-variable-reference" },
+        { "include": "#indexer-parameter" }
+    ],
+    "repository": {
+        "string": {
+            "name": "string.dmc",
+            "patterns": [
+                {
+                    "begin": "\"",
+                    "end": "\"",
+                    "name": "string.double.dmc"
+                }
+            ]
+        },
+        "comment": {
+            "name": "comment.dmc",
+            "patterns": [{
+                "match": "('|NO|^REM).*$\\n?",
+                "name": "comment.line.dmc"
+            }]
+        },
+        "assignment-operator": {
+            "match": "=",
+            "name": "keyword.operator.assignment.dmc"
+        },
+        "comparison-operator": {
+            "match": "=|<>|>|<|<=|>=",
+            "name": "keyword.operator.comparison.dmc"
+        },
+        "condition-operator": {
+            "match": "&|\\|",
+            "name": "keyword.operator.condition.dmc"
+        },
+        "manipulative-operator": {
+            "match": "\\*|/|\\-|\\+|%|\\^|\\%",
+            "name": "keyword.operator.manipulative.dmc"
+        },
+        "function-operator": {
+            "match": "(\\s*)(@)(ABS|ACOS|AN|ASIN|ATAN|COM|COS|FLOT|FRAC|IN|INT|OUT|REAL|RND|SIN|SQR|TAN)(\\s*)",
+            "name": "keyword.operator.function.dmc"
+        },
+
+        "control-statement": {
+            "match": "(\\b)(IF|ELSE|ENDIF)\\b",
+            "name": "keyword.control.dmc"
+        },
+        "functions": {
+            "match": "(\\s*)(_?)(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NO|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|RE|REM|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS)([A-H]{0,8}|[0-9.-]+)\\b",
+            "captures": {
+                "4": {
+                    "name": "variable.parameter"
+                }  
+            },
+            "name": "entity.name.function.dmc"
+        },
+        "label-declaration": {
+            "name": "meta.declaration.class.dmc",
+            "match": "(\\s*?)(#[A-Za-z0-9_]{1,7})([A-Za-z0-9_]*)(\\s*)",
+            "captures": {
+                "2": {
+                    "name": "support.class.dmc"
+                },
+                "3": {
+                    "name": "invalid.illegal.dmc"
+                }
+            }
+        },
+        "label-close": {
+            "name": "meta.declaration.class.dmc",
+            "match": "(\\b)(EN|RI)(\\s*)",
+            "captures": {
+                "2": {
+                    "name": "support.class.dmc"
+                },
+                "3": {
+                    "name": "variable.parameter"
+                }
+            }
+        },
+        "variable-reference": {
+            "name": "meta.declaration.object.dmc",
+            "match": "(\\b)([_a-zA-Z_0-9]{1,8})([_a-zA-Z_0-9]*?)(\\b)",
+            "captures": {
+                "2": {
+                    "name": "variable.other.dmc"
+                },
+                "3": {
+                    "name": "invalid.illegal"
+                }
+            }
+        },
+        "stack-variable-reference": {
+            "name": "meta.declaration.object.dmc",
+            "match": "(\\s*)(^[_a-zA-Z_0-9])(\\b)",
+            "captures": {
+                "2": {
+                    "name": "variable.language .dmc"
+                },
+                "3": {
+                    "name": "invalid.illegal"
+                }
+            }
+        },
+        "axis-variable-reference": {
+            "name": "meta.declaration.object.dmc",
+            "match": "(\\s*)(~[_a-zA-Z_0-9])(\\b)",
+            "captures": {
+                "2": {
+                    "name": "variable.language .dmc"
+                },
+                "3": {
+                    "name": "invalid.illegal"
+                }
+            }
+        },
+        "indexer-parameter": {
+            "match": "([a-zA-Z0-9][\\w$]*)(?=\\:)",
+            "name": "meta.indexer.parameter.dmc",
+            "captures": {
+                "1": {
+                    "name": "variable.parameter.dmc"
+                }
+            }
+        },
+        "numeric-literal": {
+            "match": "(\\s*)((\\$[0-9a-fA-F]+)|([-]?[0-9]+(\\.[0-9]+)?))(\\b)",
+            "name": "constant.numeric.dmc"
+        },
+        "reserved-literal": {
+            "match": "(\\s*)(TIME)(\\s*)",
+            "name": "variable.language.dmc"
+        },
+        "reserved-labels": {
+            "match": "(\\s*)(#AMPERR|#AUTO|#AUTOERR|#CMDERR|#COMINT|#ININT|#LIMSWI|#MCTIME|#POSERR|#TCPERR)(\\s*)",
+            "name": "support.class.dmc"
+        }
+    },
+    "scopeName": "source.dmc"
+}
