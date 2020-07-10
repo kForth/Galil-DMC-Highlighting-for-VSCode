@@ -3,7 +3,7 @@
     "displayName": "GalilDmcHighlighting",
     "description": "Syntax Highlighting for the Galil DMC Language",
     "version": "0.0.1",
-    "publisher": "kgoforth",
+    "publisher": "kestin",
     "engines": {
         "vscode": "^1.44.0"
     },
