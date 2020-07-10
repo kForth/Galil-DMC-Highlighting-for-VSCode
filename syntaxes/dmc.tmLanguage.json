@@ -73,7 +73,7 @@
                     "name": "variable.parameter"
                 }  
             },
-            "name": "entity.name.label.dmc"
+            "name": "entity.name.function.dmc"
         },
         "label-declaration": {
             "name": "meta.declaration.class.dmc",
