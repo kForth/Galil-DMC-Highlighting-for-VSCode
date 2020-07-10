@@ -59,7 +59,7 @@
         },
         "function-operator": {
             "match": "(\\s*)(@)(IN|OUT|ABS|ACOS|AN|ASIN|ATAN|COM|COS|FLOT|FRAC|IN|INT|OUT|REAL|RND|SIN|SQR|TAN)(\\s*)",
-            "name": "keyword.operator.function.dmc"
+            "name": "keyword.operator.manipulative.dmc"
         },
 
         "control-statement": {
@@ -116,7 +116,7 @@
             "match": "(\\s*)(^[_a-zA-Z_0-9])(\\b)",
             "captures": {
                 "2": {
-                    "name": "variable.language .dmc"
+                    "name": "variable.language.dmc"
                 },
                 "3": {
                     "name": "invalid.illegal"
@@ -128,7 +128,7 @@
             "match": "(\\s*)(~[_a-zA-Z_0-9])(\\b)",
             "captures": {
                 "2": {
-                    "name": "variable.language .dmc"
+                    "name": "variable.language.dmc"
                 },
                 "3": {
                     "name": "invalid.illegal"
