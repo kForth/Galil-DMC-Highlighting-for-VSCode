@@ -19,8 +19,8 @@
         { "include": "#label-close" },
         { "include": "#functions" },
         { "include": "#variable-reference" },
-        { "include": "#stack-variable-reference" },
-        { "include": "#axis-variable-reference" },
+        { "include": "#special-variable-reference" },
+        { "include": "#invalid-special-variable-reference" },
         { "include": "#indexer-parameter" }
     ],
     "repository": {
@@ -54,7 +54,7 @@
             "name": "keyword.operator.condition.dmc"
         },
         "manipulative-operator": {
-            "match": "\\*|/|\\-|\\+|%|\\^|\\%",
+            "match": "\\*|/|\\-|\\+|%",
             "name": "keyword.operator.manipulative.dmc"
         },
         "function-operator": {
@@ -73,7 +73,7 @@
                     "name": "variable.parameter"
                 }  
             },
-            "name": "entity.name.function.dmc"
+            "name": "entity.name.label.dmc"
         },
         "label-declaration": {
             "name": "meta.declaration.class.dmc",
@@ -111,26 +111,20 @@
                 }
             }
         },
-        "stack-variable-reference": {
-            "name": "meta.declaration.object.dmc",
-            "match": "(\\s*)(^[_a-zA-Z_0-9])(\\b)",
+        "special-variable-reference": {
+            "name": "meta.declaration.variable.dmc",
+            "match": "(\\s*)([\\^~][a-h])(\\b)",
             "captures": {
                 "2": {
                     "name": "variable.language.dmc"
-                },
-                "3": {
-                    "name": "invalid.illegal"
                 }
             }
         },
-        "axis-variable-reference": {
+        "invalid-special-variable-reference": {
             "name": "meta.declaration.object.dmc",
-            "match": "(\\s*)(~[_a-zA-Z_0-9])(\\b)",
+            "match": "(\\s*)([\\^~]([i-zA-Z]|([a-zA-Z]{2,})))(\\b)",
             "captures": {
                 "2": {
-                    "name": "variable.language.dmc"
-                },
-                "3": {
                     "name": "invalid.illegal"
                 }
             }
