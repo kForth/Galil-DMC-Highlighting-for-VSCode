@@ -4,7 +4,7 @@
 
 Galil DMC Highlighting brings syntax highlight for the Galil DMC Programming Language to VSCode.
 
-Galil DMC Highlighting should work with both Visual Studio Code and VSCodium.
+Galil DMC Highlighting should work with Visual Studio Code, VSCodium, and any other version of VSCode.
 
 ## Installing
 
