@@ -4,42 +4,77 @@
     ],
     "name": "dmc",
     "patterns": [
+        { "include": "#line-length" },
+        { "include": "#comments" },
         { "include": "#string" },
-        { "include": "#comment" },
+        { "include": "#string-format" },
+        { "include": "#routing" },
         { "include": "#numeric-literal" },
+        { "include": "#impossible" },
+        { "include": "#label-declaration" },
+        { "include": "#label-close" },
         { "include": "#reserved-literal" },
+        { "include": "#special-variable-reference" },
+        { "include": "#invalid-special-variable-reference" },
         { "include": "#assignment-operator" },
         { "include": "#comparison-operator" },
         { "include": "#condition-operator" },
         { "include": "#manipulative-operator" },
-        { "include": "#function-operator" },
         { "include": "#control-statement" },
-        { "include": "#reserved-labels" },
-        { "include": "#label-declaration" },
-        { "include": "#label-close" },
         { "include": "#functions" },
-        { "include": "#variable-reference" },
-        { "include": "#special-variable-reference" },
-        { "include": "#invalid-special-variable-reference" },
-        { "include": "#indexer-parameter" }
+        { "include": "#value-functions" },
+        { "include": "#function-operator" },
+        { "include": "#indexer-parameter" },
+        { "include": "#variable-reference" }
     ],
     "repository": {
+        "line-length": {
+            "name": "invalid.illegal",
+            "match": "^(.{80})(.+$\n?)"
+        },
         "string": {
-            "name": "string.dmc",
-            "patterns": [
+            "name": "string.double.dmc",
+            "begin": "\"",
+            "end": "\""
+        },
+        "string-format": {
+            "name": "string.interpolated.dmc",
+            "match": "{(((F|Z|$)[0-9]+\\.[0-9]+)|(S[0-9]+)|(N))}"
+        },
+        "routing": {
+            "name": "string.interpolated.dmc",
+            "match": "{(P[0-9]+|Ex)}"
+        },
+        "comments": {
+            "patterns":[
                 {
-                    "begin": "\"",
-                    "end": "\"",
-                    "name": "string.double.dmc"
+                    "name": "comment.line.character.dmc",
+                    "match": "(').*$\\n?",
+                    "captures":{
+                        "1":{
+                            "name": "punctuation.definition.comment.dmc"
+                        }
+                    }
+                },
+                {
+                    "name": "comment.line.character.dmc",
+                    "match": "(NO).*$\\n?",
+                    "captures":{
+                        "1":{
+                            "name": "punctuation.definition.comment.dmc"
+                        }
+                    }
+                },
+                {
+                    "name": "comment.line.character.dmc",
+                    "match": "(^REM).*$\\n?",
+                    "captures":{
+                        "1":{
+                            "name": "punctuation.definition.comment.dmc"
+                        }
+                    }
                 }
             ]
-        },
-        "comment": {
-            "name": "comment.dmc",
-            "patterns": [{
-                "match": "('|NO|^REM).*$\\n?",
-                "name": "comment.line.dmc"
-            }]
         },
         "assignment-operator": {
             "match": "=",
@@ -58,22 +93,30 @@
             "name": "keyword.operator.manipulative.dmc"
         },
         "function-operator": {
-            "match": "(\\s*)(@)(IN|OUT|ABS|ACOS|AN|ASIN|ATAN|COM|COS|FLOT|FRAC|IN|INT|OUT|REAL|RND|SIN|SQR|TAN)(\\s*)",
-            "name": "keyword.operator.manipulative.dmc"
+            "name": "entity.name.function.dmc",
+            "match": "@(IN|OUT|ABS|ACOS|AN|ASIN|ATAN|COM|COS|FLOT|FRAC|IN|INT|OUT|REAL|RND|SIN|SQR|TAN)"
         },
-
         "control-statement": {
-            "match": "(\\b)(IF|ELSE|ENDIF)\\b",
+            "match": "(^\\s*)(IF|ELSE|ENDIF)(\\b)",
             "name": "keyword.control.dmc"
         },
         "functions": {
-            "match": "(\\s*)(_?)(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NO|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|RE|REM|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS)([ ]?)([A-HSTXYZW]{0,8}|[0-9.-]+)\\b",
+            "name": "entity.name.function.dmc",
+            "match": "(.*?)((\\b|\\s)(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|REM|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS))([ ]?[A-HSTXYZW]{0,8})(\\b)",
             "captures": {
                 "5": {
-                    "name": "variable.parameter"
-                }  
-            },
-            "name": "entity.name.function.dmc"
+                    "name": "variable.parameter.dmc"
+                }
+            }
+        },
+        "value-functions": {
+            "name": "entity.name.function.dmc",
+            "match": "(.*?)((\\b|\\s)([_])(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NO|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|RE|REM|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS))([ ]?[A-HSTXYZW]{0,8})(\\b)",
+            "captures": {
+                "6": {
+                    "name": "variable.parameter.dmc"
+                }
+            }
         },
         "label-declaration": {
             "name": "meta.declaration.class.dmc",
@@ -139,17 +182,26 @@
             }
         },
         "numeric-literal": {
-            "match": "(\\s*)((\\$[0-9a-fA-F]+)|([-]?[0-9]+(\\.[0-9]+)?))(\\b)",
-            "name": "constant.numeric.dmc"
+            "patterns": [
+                
+                {
+                    "match": "(\\s*)(\\$[0-9a-fA-F]+)(\\b)",
+                    "name": "constant.numeric.integer.hexadecimal.dmc"
+                },
+                {
+                    "match": "(\\s*)([-]?[0-9]+(\\.[0-9]+)?)(\\b)",
+                    "name": "constant.numeric.float.dmc"
+                }
+            ]
         },
         "reserved-literal": {
-            "match": "(\\s*)(TIME)(\\s*)",
+            "match": "\\b(TIME)\\b",
             "name": "variable.language.dmc"
         },
-        "reserved-labels": {
-            "match": "(\\s*)(#AMPERR|#AUTO|#AUTOERR|#CMDERR|#COMINT|#ININT|#LIMSWI|#MCTIME|#POSERR|#TCPERR)(\\s*)",
-            "name": "support.class.dmc"
-        }
+        "impossible": {
+			"comment": "This is a special rule that should be used where no match is desired. It is not a good idea to match something like '1{0}' because in some cases that can result in infinite loops in token generation. So the rule instead matches and impossible expression to allow a match to fail and move to the next token.",
+			"match": "$.^"
+		}
     },
     "scopeName": "source.dmc"
 }
