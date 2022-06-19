@@ -30,7 +30,7 @@
     "repository": {
         "line-length": {
             "name": "invalid.illegal",
-            "match": "^(.{80})(.+$\n?)"
+            "match": "(?:^.{80})(.+$\n?)"
         },
         "string": {
             "name": "string.double.dmc",
