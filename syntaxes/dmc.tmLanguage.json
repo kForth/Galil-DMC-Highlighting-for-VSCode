@@ -85,7 +85,7 @@
             "match": "@(IN|OUT|ABS|ACOS|AN|ASIN|ATAN|COM|COS|FLOT|FRAC|IN|INT|OUT|REAL|RND|SIN|SQR|TAN)"
         },
         "control-statement": {
-            "match": "(^\\s*)(IF|ELSE|ENDIF)(\\b)",
+            "match": "(\\s*\\b)(IF|ELSE|ENDIF)(\\b)",
             "name": "keyword.control.dmc"
         },
         "functions": {
