@@ -120,13 +120,13 @@
         },
         "label-close": {
             "name": "meta.declaration.class.dmc",
-            "match": "(\\b)(EN|RI|RE)(\\s*)",
-            "captures": {
-                "2": {
+            "match": "(\\b)(EN|RI|RE)(\\b|(\\d))",
+            "captures":{
+                "2":{
                     "name": "support.class.dmc"
                 },
-                "3": {
-                    "name": "variable.parameter"
+                "4":{
+                    "name": "constant.numeric.float.dmc"
                 }
             }
         },
