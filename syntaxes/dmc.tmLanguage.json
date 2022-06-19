@@ -49,30 +49,18 @@
             "patterns":[
                 {
                     "name": "comment.line.character.dmc",
-                    "match": "(').*$\\n?",
-                    "captures":{
-                        "1":{
-                            "name": "punctuation.definition.comment.dmc"
-                        }
-                    }
+                    "begin": "(?:;?)(\\s*)(')",
+                    "end": "$\\n?"
                 },
                 {
                     "name": "comment.line.character.dmc",
-                    "match": "(NO).*$\\n?",
-                    "captures":{
-                        "1":{
-                            "name": "punctuation.definition.comment.dmc"
-                        }
-                    }
+                    "begin": "(?:;?)(\\s*)(NO)",
+                    "end": "$\\n?"
                 },
                 {
                     "name": "comment.line.character.dmc",
-                    "match": "(^REM).*$\\n?",
-                    "captures":{
-                        "1":{
-                            "name": "punctuation.definition.comment.dmc"
-                        }
-                    }
+                    "begin": "(^REM)",
+                    "end": "$\\n?"
                 }
             ]
         },
@@ -102,7 +90,7 @@
         },
         "functions": {
             "name": "entity.name.function.dmc",
-            "match": "(.*?)((\\b|\\s)(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|REM|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS))([ ]?[A-HSTXYZW]{0,8})(\\b)",
+            "match": "(.*?)((\\b|\\s)(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS))([ ]?[A-HSTXYZW]{0,8})(\\b)",
             "captures": {
                 "5": {
                     "name": "variable.parameter.dmc"
@@ -111,7 +99,7 @@
         },
         "value-functions": {
             "name": "entity.name.function.dmc",
-            "match": "(.*?)((\\b|\\s)([_])(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NO|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|RE|REM|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS))([ ]?[A-HSTXYZW]{0,8})(\\b)",
+            "match": "(.*?)((\\b|\\s)([_])(GP|LF|LR|AB|AC|AD|AF|AG|AI|AL|AM|AO|AP|AQ|AR|AS|AT|AU|AV|AZ|BA|BC|BD|BG|BI|BK|BL|BM|BN|BP|BR|BT|BV|BW|BX|BZ|CA|CB|CC|CD|CE|CF|CI|CM|CN|CR|CS|CW|DA|DC|DE|DH|DL|DM|DP|DR|DT|DV|EA|EB|EC|ED|EG|EI|EM|EO|EP|EQ|ER|ES|ET|EW|EY|FA|FE|FI|FL|FV|GA|GD|GM|GR|HM|HS|HV|HX|IA|ID|IH|II|IK|IL|IP|IT|JG|JP|JS|KD|KI|KP|KS|LA|LC|LD|LE|LI|LL|LM|LS|LV|LZ|MB|MC|ME|MF|MG|MO|MR|MT|MU|MW|NB|NF|NO|NZ|OA|OB|OC|OE|OF|OP|OT|OV|P2CD|P2CH|P2NM|P2ST|PA|PF|PL|PR|PT|PV|PW|QD|QH|QQ|QR|QS|QU|QZ|RA|RC|RD|RL|RP|RS|SA|SB|SC|SD|SH|SL|SM|SP|ST|TA|TB|TC|TD|TE|TH|TI|TK|TL|TM|TN|TP|TR|TS|TT|TV|TW|TZ|UI|UL|US|VA|VD|VE|VF|VM|VP|VR|VS|VV|WH|WT|XQ|YA|YB|YC|YR|YS|ZA|ZS))([ ]?[A-HSTXYZW]{0,8})(\\b)",
             "captures": {
                 "6": {
                     "name": "variable.parameter.dmc"
